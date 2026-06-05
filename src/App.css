@@ -1,0 +1,224 @@
+:root {
+  --bg: #f6f8fb;
+  --text: #1f2d3a;
+  --muted: #5f7285;
+  --line: #d0d9e2;
+  --ok: #198754;
+  --warn: #d64545;
+  --accent: #1479c9;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+}
+
+* {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  font-family: sans-serif;
+  position: relative;
+}
+
+.app-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 28px 24px 0 24px;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+nav h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.top-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.status {
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.status.connected {
+  color: var(--ok);
+}
+
+.status.disconnected {
+  color: var(--warn);
+}
+
+.disconnect-btn {
+  border: 1px solid #d64545;
+  background: #fff2f2;
+  color: #b12f2f;
+  padding: 7px 12px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.disconnect-btn:hover {
+  background: #ffe1e1;
+}
+
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 26px;
+}
+
+.card {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.card h4 {
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.value {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--accent);
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.value span {
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.card.danger .value {
+  color: #d36a50;
+}
+
+.remote-control-container {
+  width: 100%;
+  background-color: var(--bg);
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  padding: 16px 24px;
+  border-top: solid 1px var(--line);
+}
+
+.remote-control {
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  display: grid;
+  gap: 10px;
+  grid-template-rows: repeat(3, 1fr);
+}
+
+.middle {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.remote-control button {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 12px;
+  background: #ffffff;
+  color: var(--text);
+  font-size: 0.92rem;
+  cursor: pointer;
+}
+
+.remote-control button:hover {
+  border-color: var(--accent);
+  background: #edf4fb;
+}
+
+.remote-control .stop {
+  border-color: #d64545;
+  color: #b12f2f;
+  background: #fff2f2;
+}
+
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  nav h2 {
+    justify-content: flex-start;
+  }
+
+  nav .top-right {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .dashboard {
+    grid-template-columns: 1fr;
+  }
+
+  .value {
+    font-size: 1.4rem;
+  }
+}
+
+/* Joystick styles */
+.joystick-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+}
+
+.joystick-base {
+  width: 120px;
+  height: 120px;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: none;
+}
+
+.joystick-knob {
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(180deg, #f0f6fb, #dfeef9);
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  box-shadow: 0 6px 10px rgba(20, 121, 201, 0.08);
+  transition: transform 0.05s linear;
+}
+
+.joystick-hint {
+  font-size: 0.78rem;
+  color: var(--muted);
+}
