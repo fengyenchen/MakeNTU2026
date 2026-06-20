@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { io } from 'socket.io-client';
 import './App.css';
-import Joystick from './Joystick';
 
 // Socket.io 伺服器位址
 const SOCKET_URL = `${window.location.protocol}//${window.location.hostname}:3000`;
@@ -82,18 +81,6 @@ function App() {
             <button onClick={() => sendCmd('D')}>右轉</button>
           </div>
           <button onClick={() => sendCmd('X')}>後退</button>
-          
-          {/* <Joystick
-            onMove={(x, y) => {
-              // x, y ranges are -1 .. 1 (x: left(-1) to right(1), y: up(-1) to down(1))
-              // 發送 JOY 指令字串
-              sendCmd(`JOY ${x.toFixed(2)} ${y.toFixed(2)}`);
-            }}
-            onEnd={() => {
-              // 釋放時送 STOP
-              sendCmd('S');
-            }}
-          /> */}
         </div>
       </div>
     </div>

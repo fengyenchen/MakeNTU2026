@@ -39,38 +39,16 @@ export function handleDriveCommand(cmd) {
         return;
     }
 
-    // const command = String(cmd).charAt(0).toUpperCase();
-
     if (!port || !serialReady) {
         return;
     }
 
-    // 前端遙控指令只送單一字元給 Pico
-    // port.write(command, (error) => {
-    //     if (error) {
-    //         serialErrorMessage = error.message;
-    //     }
-    // });
-
-
-    
     const raw = String(cmd).trim();
-
-    // 支援兩種格式：
-    // - 傳統單字元（例如 'W','A','S','D','X'），向後相容並直接將首字元送給 Pico
-    // - 搖桿格式 'JOY x y'，後端原封不動送整行（附換行）給 Pico，由 Pico 解析浮點值進行細緻控制
-    if (raw.toUpperCase().startsWith('JOY')) {
-        port.write(raw + '\n', (error) => {
-            if (error) serialErrorMessage = error.message;
-        });
-        return;
-    }
-
     const command = raw.charAt(0).toUpperCase();
+    
     port.write(command, (error) => {
         if (error) serialErrorMessage = error.message;
-    });
-            
+    });    
 }
 
 export function stopMotors() {

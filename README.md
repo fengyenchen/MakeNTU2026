@@ -42,17 +42,7 @@ npm install
 
 ## 啟動
 
-Terminal 1（後端）：
-
-```bash
-node server.js
-```
-
-Terminal 2（前端）：
-
-```bash
-npm run dev -- --host
-```
+`npm run dev`
 
 ### 模擬模式
 
@@ -63,7 +53,7 @@ npm run dev -- --host
 1. 先把 Pico 韌體燒錄好（用 `pico/micropython_main.py`）
 2. 將 `hardware/robot-hardware.js` 的 `SENSOR_MODE` 設為 `"serial"`
 3. 在 `hardware/robot-hardware.js` 設定序列埠參數（`SERIAL_PORT_PATH` 填 COM）
-4. 依上面的「啟動」分別啟動後端與前端
+4. 啟動前後端
 
 ## 網路與通訊設定
 
@@ -104,25 +94,38 @@ npm run preview
 npm run lint
 ```
 
-1. `npm run dev`：啟動前端開發伺服器（Vite），用於本機開發與即時預覽。
-2. `npm run build`：產生正式部署用的前端靜態檔案（輸出到 `dist/`）。
-3. `npm run preview`：在本機啟動預覽伺服器，檢查 `build` 後成品是否正常。
-4. `npm run lint`：執行 ESLint 檢查程式碼風格與潛在錯誤。
+1. `npm run dev`：【最常用】 透過 `concurrently` 同時啟動前端 Vite（帶 --host）與後端 Node.js 伺服器。
+2. `npm run backend`：單獨啟動後端 Node.js 伺服器（`server.js`）。
+3. `npm run frontend`：單獨啟動前端開發伺服器（Vite），並暴露區域網路 IP。
+4. `npm run build`：產生正式部署用的前端靜態檔案（輸出到 `dist/`）。
+5. `npm run lint`：執行 ESLint 檢查程式碼風格與潛在錯誤。
 
 ## 專案結構
 
 ```text
 .
-|- src/
-|  |- App.jsx
-|  |- App.css
-|  |- main.jsx
-|- hardware/
-|  |- robot-hardware.js
-|- pico/
-|  |- micropython_main.py
-|- server.js
-|- package.json
+├── hardware/
+│   └── robot-hardware.js  # 後端硬體通訊與序列埠（Serial）設定
+├── node_modules/          # 專案依賴套件目錄
+├── pico/
+│   └── micropython_main.py # 燒錄在 Raspberry Pi Pico 上的 MicroPython 主程式
+├── public/                # 前端靜態資源（不需經 Vite 編譯的檔案）
+├── src/                   # 前端 React 主要程式碼
+│   ├── assets/            # 圖片、圖標等靜態檔案
+│   ├── App.css            # 主要樣式表
+│   ├── App.jsx            # 監控介面主元件與 Socket 邏輯
+│   ├── index.css          # 全域基礎樣式
+│   └── main.jsx           # React 專案進入點
+├── 參考資料/               # 競賽或硬體相關參考文件
+├── 小車/                   # 機器人硬體相關組裝或備份資料
+├── .gitignore             # Git 忽略檔案清單
+├── eslint.config.js       # ESLint 代碼檢查設定
+├── index.html             # 前端網頁主入口
+├── package-lock.json      # 套件精確版本鎖定紀錄
+├── package.json           # 專案設定與 scripts 指令配置
+├── README.md              # 專案說明文件
+├── server.js              # 後端 Node.js + Socket.IO 伺服器主程式
+└── vite.config.js         # Vite 建置與套件設定
 ```
 
 ## 參考文件
