@@ -42,7 +42,9 @@ npm install
 
 ## 啟動
 
-`npm run dev`
+```bash
+npm run dev
+```
 
 ### 模擬模式
 
